@@ -153,12 +153,11 @@
           {
             "type": "object",
             "required": [
-              "type",
-              "empty"
+              "type"
             ],
             "properties": {
               "type": {
-                "const": "create"
+                "const": "empty"
               },
               "architectures": {
                 "$ref": "#/definitions/architectures"
