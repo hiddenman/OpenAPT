@@ -205,6 +205,22 @@ class Snapshot(Entity):
         raise NotImplementedError()
 
 @dataclass
+class SnapshotEmpty(Snapshot):
+    architectures: Optional[List[str]] = None
+
+    def run(self):
+        if not self.context.execute(['snapshot', 'show', self.format_name()], 1, False):
+            return
+
+        extra_args = []
+        if self.architectures:
+            extra_args.append('-architectures=%s' % ','.join(self.architectures))
+
+        if not self.context.execute(
+                extra_args + ['snapshot', 'create', self.format_name(), 'empty']):
+            raise AptlyException()
+
+@dataclass
 class SnapshotRepository(Snapshot):
     repository: str
     architectures: Optional[List[str]] = None
@@ -388,6 +404,8 @@ class EntityCollection(list):
                 self.append(SnapshotMerge(name=name, context=context, **params))
             elif action == 'pull':
                 self.append(SnapshotPull(name=name, context=context, **params))
+            elif action == 'empty':
+                self.append(SnapshotEmpty(name=name, context=context, **params))
 
         for name, params in schema.get('publishings').items():
             self.append(Publishing(name=name, context=context, **params))

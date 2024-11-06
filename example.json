@@ -12,6 +12,9 @@
     }
   },
   "snapshots": {
+    "allocloud_empty": {
+      "type": "empty"
+    },
     "allocloud": {
       "type": "create",
       "repository": "allocloud"

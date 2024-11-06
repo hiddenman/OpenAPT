@@ -30,6 +30,9 @@ An OpenAPT schema is a structured JSON or YAML file and looks like the following
   },
   "snapshots": {
     "mylocalrepo": {
+      "type": "empty"
+    },
+    "mylocalrepo": {
       "type": "create",
       "repository": "mylocalrepo"
     },

@@ -9,6 +9,7 @@ from allocloud.openapt.models import (
     Repository,
     Mirror,
     Snapshot,
+    SnapshotEmpty,
     SnapshotRepository,
     SnapshotMirror,
     SnapshotFilter,
@@ -53,7 +54,9 @@ def run(schema, config=None, snapshot_subst=None, dry_run=False, update=False, l
     # Generate dependency graph
     graph = Graph()
     for entity in entities:
-        if isinstance(entity, SnapshotRepository):
+        if isinstance(entity, SnapshotEmpty):
+            pass
+        elif isinstance(entity, SnapshotRepository):
             graph.add_dependency(entity, entities.search(entity.repository, Repository))
         elif isinstance(entity, SnapshotMirror):
             graph.add_dependency(entity, entities.search(entity.mirror, Mirror))

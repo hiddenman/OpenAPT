@@ -154,6 +154,20 @@
             "type": "object",
             "required": [
               "type",
+              "empty"
+            ],
+            "properties": {
+              "type": {
+                "const": "create"
+              },
+              "architectures": {
+                "$ref": "#/definitions/architectures"
+              }
+            }
+          }, {
+            "type": "object",
+            "required": [
+              "type",
               "repository"
             ],
             "properties": {
