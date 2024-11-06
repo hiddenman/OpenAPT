@@ -143,6 +143,7 @@ class Mirror(Entity):
     filterWithDeps: bool = False
     withSources: bool = False
     withUdebs: bool = False
+    withInstaller: bool = False
 
     @property
     def priority(self):
@@ -164,6 +165,9 @@ class Mirror(Entity):
 
         if self.withUdebs:
             extra_args.append('-with-udebs')
+
+        if self.withInstaller:
+            extra_args.append('-with-installer')
 
         different_definition = False
 

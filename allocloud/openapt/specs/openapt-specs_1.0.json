@@ -101,6 +101,9 @@
           },
           "withUdebs": {
             "type": "boolean"
+          },
+          "withInstaller": {
+            "type": "boolean"
           }
         }
       }
