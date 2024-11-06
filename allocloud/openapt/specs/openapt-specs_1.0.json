@@ -277,6 +277,9 @@
               },
               "noRemove": {
                 "type": "boolean"
+              },
+              "dependencyFollowAllVariants": {
+                "type": "boolean"
               }
             }
           }

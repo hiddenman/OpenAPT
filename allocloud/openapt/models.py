@@ -319,6 +319,7 @@ class SnapshotPull(Snapshot):
     architectures: Optional[List[str]] = None
     allMatches: bool = False
     noRemove: bool = False
+    dependencyFollowAllVariants: bool = False
 
     def format_source(self):
         return self.context.format('snapshot', self.source)
@@ -339,6 +340,9 @@ class SnapshotPull(Snapshot):
 
         if self.noRemove:
             extra_args.append('-no-remove')
+
+        if self.dependencyFollowAllVariants:
+            extra_args.append('-dep-follow-all-variants')
 
         args = [self.format_recipient(), self.format_source(), self.format_name()] + filter_array(self.filter)
         if not self.context.execute(extra_args + ['snapshot', 'pull'] + args):
