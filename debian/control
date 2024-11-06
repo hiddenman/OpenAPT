@@ -7,7 +7,7 @@ Build-Depends:
  dh-python,
  python3-all,
  python3-setuptools,
- pylint3,
+ pylint,
  python3-pytest,
  python3-pytest-runner,
  python3-pytest-pylint,
