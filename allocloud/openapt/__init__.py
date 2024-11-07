@@ -35,7 +35,7 @@ def class_for(keyword):
 # pylint:disable=too-many-locals
 def run(schema, config=None, snapshot_subst=None, dry_run=False, update=False, limits=None, **kwargs):
     with open(schema) as f:
-        _schema = yaml.load(f)
+        _schema = yaml.load(f, yaml.SafeLoader)
 
     validate_schema(_schema)
 
