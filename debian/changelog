@@ -1,3 +1,9 @@
+openapt (1.0.2) bookworm; urgency=medium
+
+  * Support for different new options 
+
+ -- Andrew Kornilov <akornilov@gmail.com>  Thu, 07 Nov 2024 17:31:27 +0300
+
 openapt (1.0.1) bookworm; urgency=medium
 
   * Empty snapshots support
