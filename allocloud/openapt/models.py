@@ -356,6 +356,10 @@ class Publishing(Entity):
     prefix: Optional[str] = None
     forceOverwrite: bool = False
     architectures: Optional[List[str]] = None
+    origin: Optional[str] = None
+    label: Optional[str] = None
+    suite: Optional[str] = None
+    codename: Optional[str] = None
 
     def format_snapshot(self):
         return self.context.format('snapshot', self.snapshot)
@@ -385,6 +389,18 @@ class Publishing(Entity):
 
         if self.architectures:
             extra_args.append('-architectures=%s' % ','.join(self.architectures))
+
+        if self.origin:
+            extra_args.append('-origin=%s' % self.origin)
+
+        if self.label:
+            extra_args.append('-label=%s' % self.label)
+
+        if self.suite:
+            extra_args.append('-suite=%s' % self.suite)
+
+        if self.codename:
+            extra_args.append('-codename=%s' % self.codename)
 
         args = [self.format_snapshot()] + optional_args
         if not self.context.execute(extra_args + ['publish', 'snapshot'] + args):

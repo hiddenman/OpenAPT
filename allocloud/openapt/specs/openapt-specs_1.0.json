@@ -133,6 +133,18 @@
               },
               "architectures": {
                 "$ref": "#/definitions/architectures"
+              },
+              "origin": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "suite": {
+                "type": "string"
+              },
+              "codename": {
+                "type": "string"
               }
             }
           }, {
