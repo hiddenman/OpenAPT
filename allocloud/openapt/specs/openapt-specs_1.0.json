@@ -130,6 +130,9 @@
               },
               "components": {
                 "$ref": "#/definitions/components"
+              },
+              "architectures": {
+                "$ref": "#/definitions/architectures"
               }
             }
           }, {
