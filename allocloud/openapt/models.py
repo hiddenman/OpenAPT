@@ -360,6 +360,7 @@ class Publishing(Entity):
     label: Optional[str] = None
     suite: Optional[str] = None
     codename: Optional[str] = None
+    gpgKey: Optional[str] = None
 
     def format_snapshot(self):
         return self.context.format('snapshot', self.snapshot)
@@ -401,6 +402,9 @@ class Publishing(Entity):
 
         if self.codename:
             extra_args.append('-codename=%s' % self.codename)
+
+        if self.gpgKey:
+            extra_args.append('-gpg-key=%s' % self.gpgKey)
 
         args = [self.format_snapshot()] + optional_args
         if not self.context.execute(extra_args + ['publish', 'snapshot'] + args):
