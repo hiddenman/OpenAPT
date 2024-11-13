@@ -378,10 +378,13 @@ class Publishing(Entity):
             if self.gpgKey:
                 switch_args.append('-gpg-key=%s' % self.gpgKey)
 
+            if self.forceOverwrite:
+                switch_args.append('-force-overwrite')
+
             # NOTE: this is not expected to block when a package is replaced
             # To replace packages => -force-overwrite
             # https://github.com/aptly-dev/aptly/issues/633#issuecomment-351199293
-            if not self.context.execute(switch_args + ['-force-overwrite', 'publish', 'switch'] + args):
+            if not self.context.execute(switch_args + ['publish', 'switch'] + args):
                 raise AptlyException()
             return
 
