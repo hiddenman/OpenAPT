@@ -1,3 +1,9 @@
+openapt (1.0.4) bookworm; urgency=medium
+
+  * Do not overwrite files even with publish switch until requested
+
+ -- Andrew Kornilov <akornilov@gmail.com>  Wed, 13 Nov 2024 18:04:35 +0300
+
 openapt (1.0.3) bookworm; urgency=medium
 
   * Support -component and -gpg-key for publish swtich 
