@@ -104,6 +104,9 @@
           },
           "withInstaller": {
             "type": "boolean"
+          },
+          "keyring": {
+            "type": "string"
           }
         }
       }
