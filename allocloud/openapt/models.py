@@ -144,7 +144,7 @@ class Mirror(Entity):
     withSources: bool = False
     withUdebs: bool = False
     withInstaller: bool = False
-    filter: Optional[str] = None
+    keyring: Optional[str] = None
 
     @property
     def priority(self):
@@ -171,7 +171,7 @@ class Mirror(Entity):
             extra_args.append('-with-installer')
 
         if self.keyring:
-            extra_args.append("-keyring=%s" % filter_string(self.keyring))
+            extra_args.append("-keyring=%s" % self.keyring)
 
         different_definition = False
 
