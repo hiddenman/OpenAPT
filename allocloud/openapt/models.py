@@ -152,6 +152,7 @@ class Mirror(Entity):
 
     def run(self):
         extra_args = []
+        update_args = []
         if self.architectures:
             extra_args.append('-architectures=%s' % ','.join(self.architectures))
 
@@ -172,6 +173,7 @@ class Mirror(Entity):
 
         if self.keyring:
             extra_args.append("-keyring=%s" % self.keyring)
+            update_args.append("-keyring=%s" % self.keyring)
 
         different_definition = False
 
@@ -185,7 +187,7 @@ class Mirror(Entity):
             if not self.context.execute(extra_args + ['mirror', 'create'] + args):
                 raise AptlyException()
 
-            if not self.context.execute(['mirror', 'update', self.name]):
+            if not self.context.execute(update_args + ['mirror', 'update', self.name]):
                 raise AptlyException()
         else:
             if not self.context.execute(extra_args + ['mirror', 'edit', self.name]):
@@ -195,7 +197,7 @@ class Mirror(Entity):
                     different_definition = stream.getvalue() != mirror_definition
 
         if self.context.update or different_definition:
-            if not self.context.execute(['mirror', 'update', self.name]):
+            if not self.context.execute(update_args + ['mirror', 'update', self.name]):
                 raise AptlyException()
 
 @dataclass

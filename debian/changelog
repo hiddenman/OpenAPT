@@ -1,3 +1,9 @@
+openapt (1.0.6) bookworm; urgency=medium
+
+  * Fixed keyring use
+
+ -- Andrew Kornilov <akornilov@gmail.com>  Thu, 14 Nov 2024 16:44:21 +0300
+
 openapt (1.0.5) bookworm; urgency=medium
 
   * Support -keyring for mirror
