@@ -375,7 +375,7 @@ class Publishing(Entity):
         optional_args = [self.prefix] if self.prefix else []
 
         if not self.context.execute(['publish', 'show', self.distribution] + optional_args, 1, False):
-            args = [self.distribution] + optional_args + [self.format_snapshots()]
+            args = [self.distribution] + optional_args + self.format_snapshots()
 
             switch_args = []
             if self.component:
@@ -422,7 +422,7 @@ class Publishing(Entity):
         if self.gpgKey:
             extra_args.append('-gpg-key=%s' % self.gpgKey)
 
-        args = [self.format_snapshots()] + optional_args
+        args = self.format_snapshots() + optional_args
         if not self.context.execute(extra_args + ['publish', 'snapshot'] + args):
             raise AptlyException()
 
