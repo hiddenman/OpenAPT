@@ -1,3 +1,9 @@
+openapt (1.0.7) bookworm; urgency=medium
+
+  * Multi-component publishing support (breaking change!)
+
+ -- Andrew Kornilov <akornilov@gmail.com>  Tue, 19 Nov 2024 01:53:52 +0300
+
 openapt (1.0.6) bookworm; urgency=medium
 
   * Fixed keyring use
