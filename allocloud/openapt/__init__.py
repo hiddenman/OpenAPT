@@ -69,7 +69,8 @@ def run(schema, config=None, snapshot_subst=None, dry_run=False, update=False, l
             graph.add_dependency(entity, entities.search(entity.source, Snapshot))
             graph.add_dependency(entity, entities.search(entity.recipient, Snapshot))
         elif isinstance(entity, Publishing):
-            graph.add_dependency(entity, entities.search(entity.snapshot, Snapshot))
+            for snapshot in entity.snapshots:
+                graph.add_dependency(entity, entities.search(snapshot, Snapshot))
         elif isinstance(entity, (Mirror, Repository)):
             pass
         else:

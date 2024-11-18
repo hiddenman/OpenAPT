@@ -356,7 +356,7 @@ class SnapshotPull(Snapshot):
 
 @dataclass
 class Publishing(Entity):
-    snapshot: str
+    snapshots: List[str]
     distribution: str
     component: Optional[str] = None
     prefix: Optional[str] = None
@@ -368,14 +368,14 @@ class Publishing(Entity):
     codename: Optional[str] = None
     gpgKey: Optional[str] = None
 
-    def format_snapshot(self):
-        return self.context.format('snapshot', self.snapshot)
+    def format_snapshots(self):
+        return [self.context.format('snapshot', snapshot) for snapshot in self.snapshots]
 
     def run(self):
         optional_args = [self.prefix] if self.prefix else []
 
         if not self.context.execute(['publish', 'show', self.distribution] + optional_args, 1, False):
-            args = [self.distribution] + optional_args + [self.format_snapshot()]
+            args = [self.distribution] + optional_args + [self.format_snapshots()]
 
             switch_args = []
             if self.component:
@@ -422,7 +422,7 @@ class Publishing(Entity):
         if self.gpgKey:
             extra_args.append('-gpg-key=%s' % self.gpgKey)
 
-        args = [self.format_snapshot()] + optional_args
+        args = [self.format_snapshots()] + optional_args
         if not self.context.execute(extra_args + ['publish', 'snapshot'] + args):
             raise AptlyException()
 
