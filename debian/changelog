@@ -1,3 +1,9 @@
+openapt (1.0.8) bookworm; urgency=medium
+
+  * Support -skip-cleanup for publish switch
+
+ -- Andrew Kornilov <akornilov@gmail.com>  Tue, 19 Nov 2024 12:47:08 +0300
+
 openapt (1.0.7) bookworm; urgency=medium
 
   * Multi-component publishing support (breaking change!)
