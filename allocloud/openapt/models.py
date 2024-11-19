@@ -367,6 +367,7 @@ class Publishing(Entity):
     suite: Optional[str] = None
     codename: Optional[str] = None
     gpgKey: Optional[str] = None
+    skipCleanup: bool = False
 
     def format_snapshots(self):
         return [self.context.format('snapshot', snapshot) for snapshot in self.snapshots]
@@ -386,6 +387,9 @@ class Publishing(Entity):
 
             if self.forceOverwrite:
                 switch_args.append('-force-overwrite')
+
+            if self.skipCleanup:
+                switch_args.append('-skip-cleanup')
 
             # NOTE: this is not expected to block when a package is replaced
             # To replace packages => -force-overwrite
